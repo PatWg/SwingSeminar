@@ -1,6 +1,5 @@
 package fr.patrickwang;
 
-import com.sun.scenario.effect.impl.sw.java.JSWBlend_COLOR_BURNPeer;
 import fr.patrickwang.widgets.District;
 
 import javax.imageio.ImageIO;
@@ -32,23 +31,6 @@ public class Main {
         }
         frame.add(centerPanel, BorderLayout.CENTER);
 
-        JPanel rightPanel = new JPanel();
-        rightPanel.setBorder(BorderFactory.createLineBorder(Color.GREEN));
-        rightPanel.setPreferredSize(new Dimension(250, 750));
-        rightPanel.add(new JLabel("<html>Panneau de droite, <br/> peut-être pour les " +
-                "jetons de tours?</html>"));
-        frame.add(rightPanel, BorderLayout.LINE_END);
-
-        JPanel bottomPanel = new JPanel();
-        bottomPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
-        bottomPanel.setPreferredSize(new Dimension(1500, 150));
-        bottomPanel.add(new JLabel("Panneau du bas, peut-être pour les actions des jetons et " +
-                "éventuellement les cartes Alibis de Mr Jack."));
-        frame.add(bottomPanel, BorderLayout.PAGE_END);
-
-        frame.setResizable(false);
-        frame.pack();
-        // Je centre par rapport au bureau
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);

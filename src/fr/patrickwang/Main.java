@@ -1,5 +1,6 @@
 package fr.patrickwang;
 
+import com.sun.scenario.effect.impl.sw.java.JSWBlend_COLOR_BURNPeer;
 import fr.patrickwang.widgets.District;
 
 import javax.imageio.ImageIO;
@@ -11,55 +12,45 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        GridBagLayout layout = new GridBagLayout();
-        GridBagConstraints constraints = new GridBagConstraints();
-
         JFrame frame = new JFrame("Ceci est le titre de ma fenêtre");
-        frame.setSize(1500, 800);
-        frame.setResizable(false);
-        frame.setLayout(layout);
+        frame.setSize(new Dimension(1024, 768));
 
-        constraints.fill = GridBagConstraints.BOTH;
-
-        constraints.gridwidth = 3;
-        constraints.weightx = 1.0;
-        constraints.weighty = 6.0;
         JPanel leftPanel = new JPanel();
-        leftPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        leftPanel.add(new JLabel("Left"));
-        layout.setConstraints(leftPanel, constraints);
-        frame.add(leftPanel);
+        leftPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        leftPanel.setPreferredSize(new Dimension(500, 750));
+        leftPanel.add(new JLabel("<html>Panneau de gauche, <br/>peut-être pour les cartes Alibis?</html>"));
+        frame.add(leftPanel, BorderLayout.LINE_START);
 
-        constraints.weightx = 3.0;
         JPanel centerPanel = new JPanel();
-        centerPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        centerPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
+        centerPanel.setPreferredSize(new Dimension(750, 750));
         centerPanel.setLayout(new GridLayout(5, 5));
         for (int i = 0; i < 25; i++) {
             BufferedImage buttonIcon = ImageIO.read(new File(i % 8 + ".png"));
             District district = new District(new ImageIcon(buttonIcon));
             centerPanel.add(district);
         }
-        layout.setConstraints(centerPanel, constraints);
-        frame.add(centerPanel);
+        frame.add(centerPanel, BorderLayout.CENTER);
 
-        constraints.weightx = 1.0;
-        constraints.gridwidth = GridBagConstraints.REMAINDER;
         JPanel rightPanel = new JPanel();
-        rightPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        layout.setConstraints(rightPanel, constraints);
-        frame.add(rightPanel);
+        rightPanel.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+        rightPanel.setPreferredSize(new Dimension(250, 750));
+        rightPanel.add(new JLabel("<html>Panneau de droite, <br/> peut-être pour les " +
+                "jetons de tours?</html>"));
+        frame.add(rightPanel, BorderLayout.LINE_END);
 
-        constraints.weightx = 0.0;
-        constraints.weighty = 1.0;
-        constraints.gridx = 0;
-        constraints.gridy = 1;
         JPanel bottomPanel = new JPanel();
-        bottomPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        bottomPanel.add(new JLabel("Bottom"));
-        layout.setConstraints(bottomPanel, constraints);
-        frame.add(bottomPanel);
+        bottomPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+        bottomPanel.setPreferredSize(new Dimension(1500, 150));
+        bottomPanel.add(new JLabel("Panneau du bas, peut-être pour les actions des jetons et " +
+                "éventuellement les cartes Alibis de Mr Jack."));
+        frame.add(bottomPanel, BorderLayout.PAGE_END);
 
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.pack();
+        // Je centre par rapport au bureau
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
 }
